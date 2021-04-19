@@ -1,6 +1,8 @@
 # fitbit-timescaledb-exporter
 Exporter for piping metrics from fitbit to timescale-db
 
+![Image](./screenshots/Dashboard.png?raw=true)
+
 Has two components
 - `Downloader.py` - downloads your fitbit data using personal access token.
 - `Sender.py` - parses the locally downloaded fitbit data and stores it in timescale-db
