@@ -1,0 +1,40 @@
+version: "3.3"
+services:
+    timescale-db:
+        image: timescale/timescaledb-postgis:latest-pg12
+        deploy:
+            resources:
+                limits:
+                    cpus: "4"
+                    memory: 2048M
+                reservations:
+                    cpus: "1"
+                    memory: 1024M
+        volumes:
+            - ./timescale/data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_PASSWORD: POSTGRES_PASSWORD
+            TIMESCALEDB_TELEMETRY: "off"
+            TS_TUNE_MEMORY: 2GB
+            TS_TUNE_MAX_BG_WORKERS: 5
+            # We run timescaledb-tune automatically on container initialization. 
+            # By default, timescaledb-tune uses system calls to retrieve an instance's available CPU and memory. 
+            # In docker images, these system calls reflect the available resources on the host. 
+            # For cases where a container is allocated all available resources on a host, this is fine. But many use cases involve limiting the amount of resources a container (or the docker daemon) can have on the host. Therefore, this image looks in the cgroups metadata to determine the docker-defined limit sizes then passes those values to timescaledb-tune.
+            NO_TS_TUNE: "true"
+            # Copied from: https://gitlab.oit.duke.edu/jnt6/timescale-ubuntu-deployment/-/blob/master/docker-compose/timescale/docker-compose.yml
+        ports:
+            - "5432:5432"
+    # Need to run sudo chown -R 472:472 grafana/data..
+    grafana:
+        image: grafana/grafana:7.5.2
+        depends_on:
+            - timescale-db
+        volumes:
+            - ./grafana/data:/var/lib/grafana:rw
+        env_file:
+            - ./grafana/config/grafana-config.ini
+        links:
+            - "timescale-db:timescale-db"
+        ports:
+            - "3000:3000"

@@ -6,8 +6,8 @@ Has two components
 - `Sender.py` - parses the locally downloaded fitbit data and stores it in timescale-db
 
 **How to run**
-- Create `config.json` as per instructions *[Pending]*
-- Create pipenv for the python scripts using the pipfile.
+- Create `config.json`, you can use `sample_config.json` as reference and update the fields as required. Currently, `sample_config.json` has all the fields that can be configured and config parameters are self explanatory.
+- Create [pipenv](https://pipenv.pypa.io/en/latest/) for the python scripts using the pipfile.
 - Run `Downloader.py` which fetches user data from fitbit. This can run for pretty long depending on the start date set in the config file and rate limits imposed by fitbit.
 - Run `Sender.py` to parse the data and push to timescale-db
 
@@ -17,8 +17,8 @@ Has two components
 - [x] MVP for `sender.py`
 - [ ] Add `cron.sh` for adding the scripts to local cron.
 - [ ] Add `docker-compose.yml` for ease of deployment.
-    - [ ] Timescale-db
-    - [ ] Grafana
+    - [x] Timescale-db
+    - [x] Grafana
     - [ ] Downloader
     - [ ] Sender
     - [ ] Jenkins

@@ -1,0 +1,11 @@
+{
+    "fitbit_token": "FITBIT_TOKEN",
+    "fitbit_data_archival_folder": "FITBIT_DATA_ARCHIVAL_FOLDER_PATH",
+    "start_date": "2016-01-04T00:00:00-07:00",
+    "timescale_host": "127.0.0.1",
+    "timescale_port": 5432,
+    "timescale_user": "postgres",
+    "timescale_password": "POSTGRES_PASSWORD",
+    "timescale_database": "postgres",
+    "timescale_ssl_string": "disable"
+}
