@@ -1,0 +1,6 @@
+timescale/data/*
+fitbit_data_archival_folder
+config.json
+fitbit_data_archival_folder
+fitbit-archival-data-mount
+grafana/data/plugins
