@@ -112,12 +112,19 @@ class ActivityType(enum.Enum):
     aerobic_workout = 12
     spinning = 13
     elliptical = 14
-
+    bootcamp = 15
+    martial_arts = 16
+    pilates = 17
+    kickboxing = 18
+    circuit_training = 19
+    tennis = 20
+    stairclimber = 21
+    golf = 22
 
 class ActivitySummary(Base):
     __tablename__ = "activity_summary"
     time_stamp = Column(TIMESTAMP, nullable=False)
-    activity_id = Column(VARCHAR(15), primary_key=True)
+    activity_id = Column(VARCHAR(15))
     distance = Column(Integer)
     steps = Column(Integer)
     duration = Column(Integer)
