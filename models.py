@@ -123,7 +123,7 @@ class ActivityType(enum.Enum):
 
 class ActivitySummary(Base):
     __tablename__ = "activity_summary"
-    time_stamp = Column(TIMESTAMP, nullable=False)
+    time_stamp = Column(TIMESTAMP, nullable=False, primary_key=True)
     activity_id = Column(VARCHAR(15))
     distance = Column(Integer)
     steps = Column(Integer)
